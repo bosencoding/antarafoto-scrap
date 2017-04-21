@@ -26,7 +26,7 @@ class LoginSpider(scrapy.Spider):
     def parse(self, response):
         return scrapy.FormRequest.from_response(
             response,
-            formdata={'username': 'metranet', 'password':'mbpbmetranet20'}, callback=self.after_login)
+            formdata={'username': 'username', 'password':'password'}, callback=self.after_login)
 
     # Change to International Mode
     def after_login(self, response) :
