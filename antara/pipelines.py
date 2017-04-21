@@ -26,16 +26,16 @@ class DomImagePipelines(ImagesPipeline):
             raise DropItem("Item contains no images")
         return item
     
+    def file_path(self, request, response=None, info=None):
+        item = request.meta['item']
+        #log.msg(image_guid, level=log.DEBUG)
+        return u'domestic/full/{[folder_name]}/{[file_name]}'.format(item, item)
+    
     def thumb_path(self, request, thumb_id, response=None, info=None):
         item = request.meta['item']
         # image_guid = thumb_id + request.url.split('/')[-1]
         # return 'thumbs/%s/%s.jpg' % (thumb_id, image_guid)
         return u'domestic/thumbs/{[folder_name]}/{[file_name]}'.format(item, item)
-    
-    def file_path(self, request, response=None, info=None):
-        item = request.meta['item']
-        #log.msg(image_guid, level=log.DEBUG)
-        return u'domestic/full/{[folder_name]}/{[file_name]}'.format(item, item)
 
 class IntImagePipelines(ImagesPipeline):
     def get_media_requests(self, item, info):
@@ -53,6 +53,12 @@ class IntImagePipelines(ImagesPipeline):
         #log.msg(image_guid, level=log.DEBUG)
         return u'internasional/{[folder_name]}/{[file_name]}'.format(item, item)
 
+    def thumb_path(self, request, thumb_id, response=None, info=None):
+        item = request.meta['item']
+        # image_guid = thumb_id + request.url.split('/')[-1]
+        # return 'thumbs/%s/%s.jpg' % (thumb_id, image_guid)
+        return u'internasional/thumbs/{[folder_name]}/{[file_name]}'.format(item, item)
+
 
 class CrImagePipelines(ImagesPipeline):
     def get_media_requests(self, item, info):
@@ -69,3 +75,9 @@ class CrImagePipelines(ImagesPipeline):
         item = request.meta['item']
         #log.msg(image_guid, level=log.DEBUG)
         return u'cerita/{[folder_name]}/{[file_name]}'.format(item, item)
+    
+    def thumb_path(self, request, thumb_id, response=None, info=None):
+        item = request.meta['item']
+        # image_guid = thumb_id + request.url.split('/')[-1]
+        # return 'thumbs/%s/%s.jpg' % (thumb_id, image_guid)
+        return u'cerita/thumbs/{[folder_name]}/{[file_name]}'.format(item, item)
